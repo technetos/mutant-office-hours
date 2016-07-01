@@ -26,6 +26,5 @@
     function login(user) {
         authService.login(user);
     }
-
   }
 })();
