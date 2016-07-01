@@ -14,27 +14,37 @@
       login: login,
       logout: logout,
       isLoggedIn: isLoggedIn,
+      getToken: getToken,
       //sendWelcomeEmail: sendWelcomeEmail,
     };
 
     return service;
 
     ///////////
+    
+
+    function getToken() {
+        return $window.localStorage['mutant-token'];
+    }
+
+    function saveToken(token) {
+        $window.localStorage['mutant-token'] = token;
+    }
 
     function register(user) {
-        return $http.post('/api/register', user)
-            .success(function(data) {
-                // Save the token to local storage
-                $window.localStorage['mutant-token'] = data.token;
-            });
+        var registerPromise = $http.post('/api/register', user);
+        registerPromise.success(function(data) {
+            saveToken(data.token);
+        });
     }
 
     function login(user) {
-        return $http.post('/api/login', user)
-            .success(function(data) {
-                // Save the token to local storage
-                $window.localStorage['mutant-token'] = data.token;
+        var loginPromise = $http.post('/api/login', user);
+        loginPromise.success(function(data) {
+            saveToken(data.token);
+        });
     }
+            
 
     function logout() {
         // Remove the token from local storage
@@ -42,7 +52,7 @@
     }
 
     function isLoggedIn() {
-        var token = $window.localStorage['mutant-token'];
+        var token = getToken();
         var payload;
 
         if(token) {

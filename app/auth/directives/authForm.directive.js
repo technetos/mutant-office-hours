@@ -7,16 +7,26 @@
 
   function xtAuthForm() {
     return {
-      templateUrl: 'app/auth/authForm.html',
+      templateUrl: 'app/auth/directives/authForm.html',
       restrict: 'E',
       controller: AuthFormController,
       controllerAs: 'vm',
       bindToController: true,
-      scope: {},
+      scope: {
+        formName: '@',
+        submitFunction: '&',
+        error: '='
+      }
     };
   }
 
   function AuthFormController() {
     var vm = this;
+
+    vm.user = {
+      email: '',
+      password: ''
+    }
   }
+
 })();

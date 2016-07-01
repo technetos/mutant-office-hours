@@ -21,12 +21,12 @@
     $urlRouterProvider.otherwise('/');
   }
 
-  runFunction.$inject = ['$rootScope', '$state'];
+  runFunction.$inject = ['$rootScope', '$location', 'authService'];
 
-  function runFunction($rootScope, $state) {
-    $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
-      if (error === "AUTH_REQUIRED") {
-        $state.go('login');
+  function runFunction($rootScope, $location, authService) {
+    $rootScope.$on('$stateChangeStart', function(event, nextRoute, currentRoute) {
+      if($location.path() === '/mutantlist' && !authService.isLoggedIn()) {
+          $location.path('/login');
       }
     });
   }
