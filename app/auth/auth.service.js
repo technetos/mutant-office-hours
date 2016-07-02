@@ -36,6 +36,8 @@
         registerPromise.success(function(data) {
             saveToken(data.token);
         });
+
+        return registerPromise;
     }
 
     function login(user) {
@@ -43,6 +45,8 @@
         loginPromise.success(function(data) {
             saveToken(data.token);
         });
+
+        return loginPromise;
     }
             
 

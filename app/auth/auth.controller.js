@@ -5,9 +5,9 @@
     .module('mutantApp.auth')
     .controller('AuthController', AuthController);
 
-  AuthController.$inject = ['$state', 'authService'];
+  AuthController.$inject = ['$location', 'authService'];
 
-  function AuthController($state, authService) {
+  function AuthController($location, authService) {
     var vm = this;
 
     vm.register = register;
@@ -20,11 +20,19 @@
     };
 
     function register(user) {
-        authService.register(user);
+        authService.register(user).then(function() {
+            if(authService.isLoggedIn()) {
+                $location.path('/mutantlist');
+            }
+        });
     }
     
     function login(user) {
-        authService.login(user);
+        authService.login(user).then(function() {
+            if(authService.isLoggedIn()) {
+                $location.path('/mutantlist');
+            }
+        });
     }
   }
 })();
