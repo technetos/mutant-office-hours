@@ -29,12 +29,5 @@
           $location.path('/login');
       }
     });
-
-    // If we are already logged in, just go directly to the mutantlist page
-    $rootScope.$on('$stateChangeStart', function(event, nextRoute, currentRoute) {
-        if(authService.isLoggedIn()) {
-            $location.path('/mutantlist');
-        }
-    });
   }
 })();
