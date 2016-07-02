@@ -15,6 +15,7 @@
       logout: logout,
       isLoggedIn: isLoggedIn,
       getToken: getToken,
+      saveToken: saveToken,
       //sendWelcomeEmail: sendWelcomeEmail,
     };
 
@@ -32,23 +33,14 @@
     }
 
     function register(user) {
-        var registerPromise = $http.post('/api/register', user);
-        registerPromise.success(function(data) {
-            saveToken(data.token);
-        });
-
+        var registerPromise = $http.post('/register', user);
         return registerPromise;
     }
 
     function login(user) {
-        var loginPromise = $http.post('/api/login', user);
-        loginPromise.success(function(data) {
-            saveToken(data.token);
-        });
-
-        return loginPromise;
+        var loginPromise = $http.post('/login', user);
+        return loginPromise; 
     }
-            
 
     function logout() {
         // Remove the token from local storage

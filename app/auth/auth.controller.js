@@ -20,19 +20,28 @@
     };
 
     function register(user) {
-        authService.register(user).then(function() {
-            if(authService.isLoggedIn()) {
-                $location.path('/mutantlist');
-            }
-        });
+        authService.register(user)
+            .success(function(data) {
+                authService.saveToken(data.token);
+
+                if(authService.isLoggedIn()) {
+                    $location.path('/mutantlist');
+                }
+            });
     }
     
     function login(user) {
-        authService.login(user).then(function() {
-            if(authService.isLoggedIn()) {
-                $location.path('/mutantlist');
-            }
-        });
+        authService.login(user)
+            .success(function(data) {
+                authService.saveToken(data.token);
+                
+                if(authService.isLoggedIn()) {
+                    $location.path('/mutantlist');
+                }
+            })
+            .error(function(error) {
+                vm.error = error.message;
+            });
     }
   }
 })();
