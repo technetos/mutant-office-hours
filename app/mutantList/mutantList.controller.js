@@ -5,13 +5,13 @@
     .module('mutantApp.mutantList')
     .controller('MutantListController', MutantListController);
 
-  MutantListController.$inject = ['mutantService', 'user'];
+  MutantListController.$inject = ['mutantService'];
 
-  function MutantListController(mutantService, user) {
+  function MutantListController(mutantService) {
     var vm = this;
 
-    vm.mutants = mutantService.mutantsByUser(user.uid);
-
+    //vm.mutants = mutantService.getMutants()
+    mutantService.getMutants();
   }
 
 })();

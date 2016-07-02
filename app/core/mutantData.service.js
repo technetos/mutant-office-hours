@@ -8,18 +8,16 @@
     mutantDataService.$inject = ['$http', 'authService'];
     function mutantDataService($http, authService) {
         var service = {
-            getAccount:getAccount
+            getMutants: getMutants,
         }
 
         return service;
 
         //////////
 
-        function getAccount() {
-            return $http.get('/api/account', {
-                headers: {
-                    Authorization: 'Bearer ' + authService.getToken()
-                }
+        function getMutants() {
+            return $http.get('/mutants', {
+                headers: { Authorization: 'Bearer ' + authService.getToken() }
             });
         };
     }

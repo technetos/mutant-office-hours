@@ -7,13 +7,14 @@
 
   mutantService.$inject = ['mutantDataService'];
 
-  function mutantService($firebaseArray, firebaseDataService) {
+  function mutantService(mutantDataService) {
     var mutants = null;
 
     var service = {
       Mutant: Mutant,
-      mutantsByUser: mutantsByUser,
-      reset: reset,
+      getMutants: getMutants,
+      //addMutant: addMutant,
+      //removeMutant: removeMutant,
     };
 
     return service;
@@ -28,18 +29,11 @@
       this.complete = false;
     }
 
-    function mutantsByUser(uid) {
-      if (!mutants) {
-        mutants = $firebaseArray(firebaseDataService.users.child(uid).child('mutants'));
-      }
-      return mutants;
-    }
-
-    function reset() {
-      if (mutants) {
-        mutants.$destroy();
-        mutants = null;
-      }
+    function getMutants() {
+        mutantDataService.getMutants()
+            .success(function(data) {
+                mutants = data;
+            });
     }
   }
 })();

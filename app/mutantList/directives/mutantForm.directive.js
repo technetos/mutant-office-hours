@@ -27,7 +27,7 @@
     vm.newMutant = new mutantService.Mutant();
 
     function addMutant() {
-      vm.mutants.$add(vm.newMutant);
+      //vm.mutants.$add(vm.newMutant);
       vm.newMutant = new mutantService.Mutant();
     }
   }

@@ -18,9 +18,9 @@
     };
   }
 
-  MutantTableController.$inject = ['textMessageService'];
+  MutantTableController.$inject = [];
 
-  function MutantTableController(textMessageService) {
+  function MutantTableController() {
     var vm = this;
 
     vm.deleteMutant = deleteMutant;
@@ -28,15 +28,15 @@
     vm.toggleComplete = toggleComplete;
 
     function toggleComplete(mutant) {
-      vm.mutants.$save(mutant);
+      //vm.mutants.$save(mutant);
     }
 
     function deleteMutant(mutant) {
-      vm.mutants.$remove(mutant);
+      //vm.mutants.$remove(mutant);
     }
 
     function sendText(mutant) {
-      textMessageService.sendText(mutant, vm.mutants);
+      //textMessageService.sendText(mutant, vm.mutants);
     }
   }
 })();
