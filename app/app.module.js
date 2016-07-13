@@ -1,33 +1,13 @@
-(function() {
-  'use strict';
+{
+  angular.module('mutantlist', [
+      'ui.router',
+      'mutantlist.home',
+      'mutantlist.signIn',
+      'mutantlist.signUp',
+  ]).config(config);
 
-  angular.module('mutantApp', [
-    // Angular modules
-    'ui.router',
-
-    // Custom modules
-    'mutantApp.home',
-    'mutantApp.mutantList',
-    'mutantApp.auth',
-    'mutantApp.core',
-    'mutantApp.layout',
-  ])
-  .config(configFunction)
-  .run(runFunction);
-
-  configFunction.$inject = ['$urlRouterProvider'];
-
-  function configFunction($urlRouterProvider) {
-    $urlRouterProvider.otherwise('/');
+  config.$inject = ["$urlRouterProvider'];
+  function config($urlRouterProvider) {
+    $urlRouterProvider.otherwise('/signup/');
   }
-
-  runFunction.$inject = ['$rootScope', '$location', 'authService'];
-
-  function runFunction($rootScope, $location, authService) {
-    $rootScope.$on('$stateChangeStart', function(event, nextRoute, currentRoute) {
-      if($location.path() === '/mutantlist' && !authService.isLoggedIn()) {
-          $location.path('/login');
-      }
-    });
-  }
-})();
+}
