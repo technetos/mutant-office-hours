@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-4">
+      <h3>Sign Up</h3>
+      <form id="returning_user" ng-submit="vm.submit()">
+        <p>
+          <label for="email">Email</label><br>
+          <input type="text" name="email" autofocus="autofocus" ng-model="vm.user.email" required>
+        </p>
+        <p>
+          <label for="password">Password</label><br>
+          <input type="password" name="password" ng-model="vm.user.password" required>
+        </p>
+        <input type="submit" name="commit" value="Sign In" class="btn btn-default">
+      </form>
+    </div>
+  </div>
+</div>
+
+

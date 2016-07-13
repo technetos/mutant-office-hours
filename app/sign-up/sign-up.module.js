@@ -1,3 +1,3 @@
 {
-  angular.module('mutantlist.signup', []);
+  angular.module('mutantlist.signUp', []);
 }

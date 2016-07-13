@@ -1,13 +1,14 @@
 {
   angular.module('mutantlist', [
       'ui.router',
-      'mutantlist.home',
+      //'mutantlist.home',
       'mutantlist.signIn',
       'mutantlist.signUp',
+      'mutantlist.user',
   ]).config(config);
 
-  config.$inject = ["$urlRouterProvider'];
+  config.$inject = ['$urlRouterProvider'];
   function config($urlRouterProvider) {
-    $urlRouterProvider.otherwise('/signup/');
+    $urlRouterProvider.otherwise('/');
   }
 }

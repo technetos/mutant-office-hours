@@ -6,12 +6,13 @@
         this.user = {};
       }
       submit() {
-        UserService.create(this.user);//.then(() => $state.go('home');
+        var vm = this;
+        UserService.create(vm.user).then((data) => console.log(data));//.then(() => $state.go('home');
       }
     }
 
     return {
-      scope:{},
+      //scope:{},
       controller:SignUpController,
       controllerAs:'vm',
       bindToController:true,
